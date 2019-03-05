@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:color="@color/basicBackgroundColor"
+>
+
+    <TextView
+            android:gravity="left"
+            android:layout_alignParentTop="true"
+            android:textSize="@dimen/text_size_medium"
+            android:id="@+id/txtViewRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/top_height"
+
+            android:textColor="@android:color/black"
+            android:text="@string/register_title"
+    />
+
+    <ScrollView
+            android:layout_below="@+id/txtViewRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutContainer"
+    >
+        <RelativeLayout
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/basic_margin_padding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical">
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextName"
+                        android:layout_marginBottom="@dimen/basic_margin_padding"
+                        android:hint="@string/name"/>
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextICNumber"
+                        android:inputType="number"
+                        android:layout_marginBottom="@dimen/basic_margin_padding"
+                        android:hint="@string/user_ic_number"/>
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextMail"
+                        android:inputType="textEmailAddress"
+                        android:layout_marginBottom="@dimen/basic_margin_padding"
+                        android:hint="@string/mail"/>
+
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextPhoneNumber"
+                        android:inputType="phone"
+                        android:layout_marginBottom="@dimen/basic_margin_padding"
+                        android:hint="@string/phone"/>
+
+                <RadioGroup
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/radioBtnGender">
+                    <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/male"/>
+                    <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/female"/>
+                    <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/other"/>
+                </RadioGroup>
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextPassword"
+                        android:layout_marginBottom="@dimen/basic_margin_padding"
+                        android:inputType="textPassword"
+                        android:hint="@string/password"/>
+
+                <EditText
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/editTextConfirmPassword"
+                        android:layout_marginBottom="@dimen/basic_margin_padding"
+                        android:hint="@string/password_confirm"/>
+
+
+                <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnProceed"
+                        android:text="@string/proceed"
+                        android:background="@drawable/rounder_corner_dark"
+                        android:paddingBottom="@dimen/basic_margin_padding"
+                        android:textColor="@color/titleTextColorReverse"
+                        android:paddingTop="@dimen/basic_margin_padding"
+                        android:layout_marginTop="@dimen/basic_margin_padding"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+                <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/basic_margin_padding"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginBottom="@dimen/basic_margin_padding">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/old_user"/>
+                    <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btnLogin"
+                            android:text="@string/login"
+                            android:textStyle="bold"
+                            android:background="@android:color/transparent"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
