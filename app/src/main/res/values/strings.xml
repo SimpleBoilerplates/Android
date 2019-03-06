@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">BooksDemoAndroid</string>
+
+    <!-- LOGIN REGISER-->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="user_name">Type your user name</string>
+    <string name="password">Type your password</string>
+    <string name="password_confirm">Type your password again</string>
+    <string name="mail">Type your mail address</string>
+
+    <string name="new_user">New User? Please </string>
+    <string name="old_user">Already an User? Please </string>
+
 </resources>

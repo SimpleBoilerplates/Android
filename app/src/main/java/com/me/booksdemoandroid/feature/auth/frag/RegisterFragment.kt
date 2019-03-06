@@ -60,7 +60,7 @@ class RegisterFragment : BaseFragment() {
 
     private fun setUI() {
 
-        btnProceed.setOnClickListener {
+        btnRegister.setOnClickListener {
             register()
         }
 
@@ -75,7 +75,7 @@ class RegisterFragment : BaseFragment() {
         var isValid = true
 
 
-        nonEmptyList(editTextName, editTextICNumber, editTextMail, editTextPassword, editTextPhoneNumber) { view, msg ->
+        nonEmptyList(editTextUserName, editTextMail, editTextPassword) { view, msg ->
             view.error = msg
             isValid = false
 
@@ -83,11 +83,9 @@ class RegisterFragment : BaseFragment() {
 
         minLengthList(
             5,
-            editTextName,
+            editTextUserName,
             editTextMail,
-            editTextPassword,
-            editTextPhoneNumber
-        ) { view, msg ->
+            editTextPassword) { view, msg ->
             view.error = msg
             isValid = false
         }
@@ -101,13 +99,6 @@ class RegisterFragment : BaseFragment() {
             isValid = false
         }
 
-        minLengthList(
-            10,
-            editTextICNumber
-        ) { view, msg ->
-            view.error = msg
-            isValid = false
-        }
 
         validEmailList(editTextMail) { view, msg ->
             view.error = msg
@@ -122,13 +113,10 @@ class RegisterFragment : BaseFragment() {
             return
         }
 
-        registerApi(
-            editTextName.text.trim().toString(),
-            editTextPhoneNumber.text.trim().toString(),
-            editTextICNumber.text.trim().toString(),
-            editTextMail.text.trim().toString(),
-            editTextPassword.text.trim().toString()
-        )
+//        registerApi(
+//            editTextMail.text.trim().toString(),
+//            editTextPassword.text.trim().toString()
+//        )
     }
 
     private fun registerApi(name: String, msisdn: String, icNumber: String, email: String, passWord: String) {
@@ -150,19 +138,6 @@ class RegisterFragment : BaseFragment() {
             //startActivity(IntentHelper.showVerifyOTPActivity(context!!, icNumber))
             activity!!.finish()
         } else {
-
-            var message = ""
-            Log.d("REGISTER", jsonObject.toString())
-            var error = jsonObject.getJSONObject("error")
-            if (error.has("ic_number")) {
-                message = error.optJSONArray("ic_number").opt(0).toString()
-            }
-            if (error.has("email")) {
-                message = error.optJSONArray("email").opt(0).toString()
-            }
-            if (error.has("msisdn")) {
-                message = error.optJSONArray("msisdn").opt(0).toString()
-            }
 
 //            val lottieFragment = IntentHelper.showLottiFragment(KEnum.Companion.LoadingType.Error.value, message)
 //            lottieFragment.show(activity!!.supportFragmentManager, "")

@@ -19,17 +19,26 @@ import com.wajahatkarim3.easyvalidation.core.collection_ktx.nonEmptyList
 import org.json.JSONObject
 import com.me.booksdemoandroid.shared.helper.PreferenceHelper.get
 import com.me.booksdemoandroid.shared.helper.PreferenceHelper.set
+import androidx.lifecycle.ViewModelProviders
+import com.me.booksdemoandroid.feature.auth.vm.LoginViewModel
+import com.me.booksdemoandroid.shared.extension.getViewModel
+
 
 class LoginFragment : BaseFragment() {
 
     private var onBackPressedListener: OnBackPressedListener? = null
 
+
+    val vm: LoginViewModel by lazy {
+        getViewModel { LoginViewModel() }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         arguments?.let {
 
         }
+
     }
 
     override fun onCreateView(
@@ -45,7 +54,7 @@ class LoginFragment : BaseFragment() {
         if (context is OnBackPressedListener) {
             onBackPressedListener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+            throw RuntimeException("$context must implement OnFragmentInteractionListener")
         }
     }
 
@@ -56,7 +65,6 @@ class LoginFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         setUI()
     }
 
@@ -80,12 +88,12 @@ class LoginFragment : BaseFragment() {
 
         var isValid = true
 
-        nonEmptyList(editTextICNumber, editTextPassword) { view, msg ->
+        nonEmptyList(editTextUserName, editTextPassword) { view, msg ->
             view.error = msg
             isValid = false
         }
 
-        minLengthList(10, editTextICNumber) { view, msg ->
+        minLengthList(6, editTextUserName) { view, msg ->
             view.error = msg
             isValid = false
         }
@@ -105,7 +113,7 @@ class LoginFragment : BaseFragment() {
         }
 
         //TODO:- Make Call
-        loginApi(editTextICNumber.text.trim().toString(), editTextPassword.text.trim().toString())
+        loginApi(editTextUserName.text.trim().toString(), editTextPassword.text.trim().toString())
     }
 
     private fun loginApi(icNumber: String, passWord: String) {
@@ -115,8 +123,6 @@ class LoginFragment : BaseFragment() {
     private fun handleResult(data: JSONObject) {
         if (data.optBoolean("success")) {
             val prefs = PreferenceHelper.defaultPrefs(context!!)
-
-
             prefs[""] = data.optJSONObject("data").optString("access_token")
             prefs[KEnum.Companion.SharedPref.ExpiresIn.name] = data.optJSONObject("data").optInt("expires_in")
             //prefs[KEnum.Companion.SharedPref.LoginTime.name] = LocalDateTime.now()
