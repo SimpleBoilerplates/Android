@@ -9,8 +9,19 @@ import androidx.appcompat.app.AppCompatDelegate
 
 class App : Application() {
 
+    init {
+        INSTANCE = this
+    }
+
     companion object {
         //var currentUser: User? = null
+
+        private var INSTANCE: App? = null
+
+        fun applicationContext() : Context {
+            return INSTANCE!!.applicationContext
+        }
+
         var isAuthenticated: Boolean = false
 
         fun setUser() {

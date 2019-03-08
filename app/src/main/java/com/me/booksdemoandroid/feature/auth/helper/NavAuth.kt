@@ -1,4 +1,4 @@
-package com.me.booksdemoandroid.feature.auth.Helper
+package com.me.booksdemoandroid.feature.auth.helper
 
 import android.content.Context
 import android.content.Intent

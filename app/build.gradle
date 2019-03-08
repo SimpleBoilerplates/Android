@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -22,11 +23,17 @@ android {
         }
     }
 }
-ext {
-    lifecycle_version = "2.0.0"
 
-}
 dependencies {
+
+    def lifecycle_version = "2.0.0"
+
+    def moshiVersion="1.8.0"
+    def retrofit2_version = "2.5.0"
+    def okhttp3_version = "3.12.0"
+    def kotlinCoroutineVersion = "1.1.1"
+    def picassoVersion = "2.71828"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
@@ -34,9 +41,32 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1")
+
     implementation "com.wajahatkarim3.easyvalidation:easyvalidation-core:1.0.1"
+
+    //Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+
+    //Retrofit2
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+
+    //Okhttp3
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+
+    //Picasso for Image Loading
+    implementation ("com.squareup.picasso:picasso:$picassoVersion"){
+        exclude group: "com.android.support"
+    }
+
+    //Kotlin Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutineVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion"
+
+
     testImplementation 'junit:junit:4.12'
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha01'

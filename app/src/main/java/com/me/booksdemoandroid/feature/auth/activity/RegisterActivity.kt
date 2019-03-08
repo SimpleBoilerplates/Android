@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.me.booksdemoandroid.R
-import com.me.booksdemoandroid.feature.auth.Helper.NavAuth
+import com.me.booksdemoandroid.feature.auth.helper.NavAuth
 import com.me.booksdemoandroid.feature.auth.frag.RegisterFragment
 import com.me.booksdemoandroid.shared.extension.addFragment
 import com.me.booksdemoandroid.shared.listner.OnBackPressedListener
