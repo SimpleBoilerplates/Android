@@ -3,30 +3,42 @@ package com.me.booksdemoandroid.feature.auth.frag
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.me.booksdemoandroid.R
+import com.me.booksdemoandroid.feature.auth.vm.AuthViewModel
+import com.me.booksdemoandroid.shared.extension.getViewModel
 import com.me.booksdemoandroid.shared.fragment.BaseFragment
-import com.me.booksdemoandroid.shared.k.KEnum
 import com.me.booksdemoandroid.shared.listner.OnBackPressedListener
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.minLengthList
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.nonEmptyList
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.validEmailList
 import kotlinx.android.synthetic.main.fragment_register.*
-import org.json.JSONObject
 
 class RegisterFragment : BaseFragment() {
 
     private var onBackPressedListener: OnBackPressedListener? = null
 
 
+    val vm: AuthViewModel by lazy {
+        getViewModel { AuthViewModel() }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
         }
+
+        vm.loading.observe(this, Observer {
+            if (it) {
+
+            } else {
+
+            }
+        })
     }
 
     override fun onCreateView(
@@ -85,7 +97,8 @@ class RegisterFragment : BaseFragment() {
             5,
             editTextUserName,
             editTextMail,
-            editTextPassword) { view, msg ->
+            editTextPassword
+        ) { view, msg ->
             view.error = msg
             isValid = false
         }
@@ -113,36 +126,21 @@ class RegisterFragment : BaseFragment() {
             return
         }
 
-//        registerApi(
-//            editTextMail.text.trim().toString(),
-//            editTextPassword.text.trim().toString()
-//        )
-    }
+        vm.signUp(
+            editTextUserName.text.trim().toString(),
+            editTextMail.text.trim().toString(),
+            editTextPassword.text.trim().toString()
+        ).observe(this,
+            Observer {
 
-    private fun registerApi(name: String, msisdn: String, icNumber: String, email: String, passWord: String) {
+                if (it.first) {
+                    onBackPressedListener?.doBack()
+                }
 
-//        val lottieFragment =
-//            IntentHelper.showLottiFragment(KEnum.Companion.LoadingType.Loading.value, getString(R.string.wait))
-//        lottieFragment.show(activity!!.supportFragmentManager, "")
-
-        // Ref<T> uses the WeakReference under the hood
-        // val ref: Ref<RegisterFragment> = this.asReference()
-
+            })
 
     }
 
-    private fun handleResult(jsonObject: JSONObject) {
-        if (jsonObject.optBoolean("success")) {
-            val data = jsonObject.optJSONObject("data")
-            val icNumber = data.optString("ic_number")
-            //startActivity(IntentHelper.showVerifyOTPActivity(context!!, icNumber))
-            activity!!.finish()
-        } else {
-
-//            val lottieFragment = IntentHelper.showLottiFragment(KEnum.Companion.LoadingType.Error.value, message)
-//            lottieFragment.show(activity!!.supportFragmentManager, "")
-        }
-    }
 
     companion object {
 

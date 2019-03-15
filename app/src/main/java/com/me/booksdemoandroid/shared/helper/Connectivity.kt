@@ -1,4 +1,4 @@
- package com.me.booksdemoandroid.shared.helper
+package com.me.booksdemoandroid.shared.helper
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -1,8 +1,8 @@
-package com.me.booksdemoandroid.feature.home
+package com.me.booksdemoandroid.feature.home.helper
 
 import android.content.Context
 import android.content.Intent
-import com.me.booksdemoandroid.feature.auth.activity.LoginActivity
+import com.me.booksdemoandroid.feature.home.activity.HomeActivity
 
 class NavHome {
     companion object {

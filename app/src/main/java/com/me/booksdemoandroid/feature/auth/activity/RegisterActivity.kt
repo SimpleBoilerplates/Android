@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.me.booksdemoandroid.R
-import com.me.booksdemoandroid.feature.auth.helper.NavAuth
 import com.me.booksdemoandroid.feature.auth.frag.RegisterFragment
+import com.me.booksdemoandroid.feature.auth.helper.AuthNav
 import com.me.booksdemoandroid.shared.extension.addFragment
 import com.me.booksdemoandroid.shared.listner.OnBackPressedListener
 import kotlinx.android.synthetic.main.toolbar.*
@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity(), OnBackPressedListener {
     }
 
     override fun doBackWithStart() {
-        startActivity(NavAuth.showLoginActivity(this))
+        startActivity(AuthNav.showLoginActivity(this))
         finish()
     }
 

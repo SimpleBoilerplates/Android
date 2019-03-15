@@ -1,15 +1,15 @@
 package com.me.booksdemoandroid.feature.splash
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.me.booksdemoandroid.App
 import com.me.booksdemoandroid.R
-import com.me.booksdemoandroid.feature.auth.helper.NavAuth
-import com.me.booksdemoandroid.feature.home.NavHome
+import com.me.booksdemoandroid.feature.auth.helper.AuthNav
+import com.me.booksdemoandroid.feature.home.helper.NavHome
 import com.me.booksdemoandroid.shared.helper.PreferenceHelper
-import com.me.booksdemoandroid.shared.k.KEnum
 import com.me.booksdemoandroid.shared.helper.PreferenceHelper.get
-import com.me.booksdemoandroid.shared.repositories.Pref
+import com.me.booksdemoandroid.shared.k.KEnum
+import com.me.booksdemoandroid.shared.pref.Pref
 
 class SplashActivity : AppCompatActivity() {
 
@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         val prefs = PreferenceHelper.defaultPrefs(this)
-        val token : String? = prefs[KEnum.Companion.SharedPref.Token.name]
+        val token: String? = prefs[KEnum.Companion.SharedPref.Token.name]
 
         if (token != null) {
             Pref.token = token
@@ -26,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
             startActivity(NavHome.showHomeActivity(this))
             finish()
         } else {
-            startActivity(NavAuth.showLoginActivity(this))
+            startActivity(AuthNav.showLoginActivity(this))
             finish()
         }
     }

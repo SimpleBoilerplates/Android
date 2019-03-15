@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.home.HomeActivity"></activity>
+        <activity android:name=".feature.home.activity.HomeActivity"></activity>
         <activity android:name=".feature.auth.activity.LoginActivity"></activity>
         <activity android:name=".feature.auth.activity.RegisterActivity"></activity>
 

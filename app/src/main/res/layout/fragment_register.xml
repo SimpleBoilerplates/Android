@@ -92,8 +92,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/basic_margin_padding"
                 android:paddingBottom="@dimen/basic_margin_padding"
-                android:text="@string/register"
-                 />
+                android:text="@string/register" />
 
             <LinearLayout
                 android:layout_width="match_parent"
