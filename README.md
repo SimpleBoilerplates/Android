@@ -25,6 +25,7 @@ This is a very simple Boilerplate application, this has following features.
   * [Build an App with Architecture Components](https://www.youtube.com/watch?v=BofWWZE1wts)
   * [Android Architecture Components Basic Sample
 ](https://github.com/googlesamples/android-architecture-components/tree/master/BasicSample)
+* [Android Architecture samples](https://github.com/googlesamples/android-architecture)
   * [ViewModels and LiveData: Patterns + AntiPatterns](https://medium.com/androiddevelopers/viewmodels-and-livedata-patterns-antipatterns-21efaef74a54)
   * [MVVM architecture, ViewModel and LiveData](https://proandroiddev.com/mvvm-architecture-viewmodel-and-livedata-part-1-604f50cda1)
   * [Better Android Apps Using MVVM with Clean Architecture](https://www.toptal.com/android/android-apps-mvvm-with-clean-architecture?fbclid=IwAR3Eu4VCeAEYZca3r-lOA-pZIcsZeLJyPIVVuX7tg_zn13iBMbjUoQsSBsA)
