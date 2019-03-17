@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.row_book.view.*
 
 class BookAdapter(
     private val mContext: Context,
-    val clickListener: (Int) -> Unit
+    private val clickListener: (Book) -> Unit
 ) :
     androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
@@ -43,11 +43,9 @@ class BookAdapter(
         }
 
         fun bind(
-            position: Int, book: Book, clickListener: (Int) -> Unit
+            position: Int, book: Book, clickListener: (Book) -> Unit
         ) {
-            // if(position == view.tag) {
-            // view.txtViewDate.text = histories.date.formatDate()
-            itemView.setOnClickListener { clickListener(position) }
+            itemView.setOnClickListener { clickListener(book) }
             itemView.txtViewTitle.text = book.title
             Picasso.get().load(book.preview).into(itemView.imageViewBook)
 

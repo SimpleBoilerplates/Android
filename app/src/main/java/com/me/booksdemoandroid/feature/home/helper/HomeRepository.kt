@@ -14,7 +14,7 @@ interface HomeApi {
 
 }
 
-class RepositoryHome(private val api: HomeApi) : BaseRepository() {
+class HomeRepository(private val api: HomeApi) : BaseRepository() {
 
     suspend fun books(): String? {
 

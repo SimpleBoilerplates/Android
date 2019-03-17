@@ -7,16 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.me.booksdemoandroid.R
 import com.me.booksdemoandroid.feature.auth.vm.AuthViewModel
 import com.me.booksdemoandroid.feature.home.helper.NavHome
 import com.me.booksdemoandroid.shared.extension.getViewModel
+import com.me.booksdemoandroid.shared.extension.showSnackBar
 import com.me.booksdemoandroid.shared.fragment.BaseFragment
 import com.me.booksdemoandroid.shared.helper.PreferenceHelper
 import com.me.booksdemoandroid.shared.helper.PreferenceHelper.set
 import com.me.booksdemoandroid.shared.k.KEnum
 import com.me.booksdemoandroid.shared.listner.OnBackPressedListener
 import com.me.booksdemoandroid.shared.pref.Pref
+import com.me.booksdemoandroid.shared.repositories.Status
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.minLengthList
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.nonEmptyList
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -26,8 +29,7 @@ class LoginFragment : BaseFragment() {
 
     private var onBackPressedListener: OnBackPressedListener? = null
 
-
-    val vm: AuthViewModel by lazy {
+    private val vm: AuthViewModel by lazy {
         getViewModel { AuthViewModel() }
     }
 
@@ -37,10 +39,8 @@ class LoginFragment : BaseFragment() {
         arguments?.let {
 
         }
-
         setUI()
         setVM()
-
     }
 
     override fun onCreateView(
@@ -85,28 +85,41 @@ class LoginFragment : BaseFragment() {
 
     private fun setVM() {
 
-        vm.loading.observe(this, Observer {
-            if (it) {
-
-            } else {
-
-            }
-        })
+//        vm.isLoading.observe(this, Observer {
+//            if (it) {
+//
+//            } else {
+//
+//            }
+//        })
 
         vm.result.observe(this, Observer {
-            if (it.first) {
-                Pref.token = it.second
-                val prefs = PreferenceHelper.defaultPrefs(context!!)
-                prefs[KEnum.Companion.SharedPref.Token.name] = it.second
-                context!!.startActivity(NavHome.showHomeActivity(context!!))
-                activity!!.finish()
+
+            when (it?.status) {
+                Status.LOADING -> {
+
+                }
+                Status.SUCCESS -> {
+                    it.data?.let { it ->
+                        Pref.token = it
+                        val prefs = PreferenceHelper.defaultPrefs(context!!)
+                        prefs[KEnum.Companion.SharedPref.Token.name] = it
+                        context!!.startActivity(NavHome.showHomeActivity(context!!))
+                        activity!!.finish()
+                    }
+                }
+                Status.ERROR -> {
+                    it.message?.let { message ->
+                        container.showSnackBar(message, Snackbar.LENGTH_SHORT)
+                    }
+
+                }
             }
+
         })
     }
 
     private fun login() {
-
-        // startActivity(IntentHelper.showHomeActivity(context!!))
 
         var isValid = true
 
@@ -133,18 +146,7 @@ class LoginFragment : BaseFragment() {
         if (!isValid) {
             return
         }
-
-//        vm.login(editTextUserName.text.trim().toString(), editTextPassword.text.trim().toString()).observe(this, Observer {
-//           if(it.first) {
-//               Pref.token = it.second
-//               val prefs = PreferenceHelper.defaultPrefs(context!!)
-//               prefs[KEnum.Companion.SharedPref.Token.name] = it.second
-//               context!!.startActivity(NavHome.showHomeActivity(context!!))
-//               activity!!.finish()
-//           }
-//        })
         vm.login(editTextUserName.text.trim().toString(), editTextPassword.text.trim().toString())
-
     }
 
 

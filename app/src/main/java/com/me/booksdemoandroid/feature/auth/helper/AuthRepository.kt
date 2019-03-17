@@ -17,7 +17,7 @@ interface AuthApi {
 }
 
 
-class RepositoryAuth(private val api: AuthApi) : BaseRepository() {
+class AuthRepository(private val api: AuthApi) : BaseRepository() {
 
     suspend fun login(email: String, password: String): String? {
 

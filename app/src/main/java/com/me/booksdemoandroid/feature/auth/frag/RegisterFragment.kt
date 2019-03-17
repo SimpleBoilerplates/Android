@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.me.booksdemoandroid.R
 import com.me.booksdemoandroid.feature.auth.vm.AuthViewModel
 import com.me.booksdemoandroid.shared.extension.getViewModel
+import com.me.booksdemoandroid.shared.extension.showSnackBar
 import com.me.booksdemoandroid.shared.fragment.BaseFragment
 import com.me.booksdemoandroid.shared.listner.OnBackPressedListener
+import com.me.booksdemoandroid.shared.repositories.Status
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.minLengthList
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.nonEmptyList
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.validEmailList
@@ -22,7 +25,7 @@ class RegisterFragment : BaseFragment() {
     private var onBackPressedListener: OnBackPressedListener? = null
 
 
-    val vm: AuthViewModel by lazy {
+    private val vm: AuthViewModel by lazy {
         getViewModel { AuthViewModel() }
     }
 
@@ -31,14 +34,8 @@ class RegisterFragment : BaseFragment() {
         arguments?.let {
 
         }
-
-        vm.loading.observe(this, Observer {
-            if (it) {
-
-            } else {
-
-            }
-        })
+        setUI()
+        setVM()
     }
 
     override fun onCreateView(
@@ -54,7 +51,7 @@ class RegisterFragment : BaseFragment() {
         if (context is OnBackPressedListener) {
             onBackPressedListener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+            throw RuntimeException("$context must implement OnFragmentInteractionListener")
         }
     }
 
@@ -79,6 +76,38 @@ class RegisterFragment : BaseFragment() {
         btnLogin.setOnClickListener {
             onBackPressedListener?.doBackWithStart()
         }
+    }
+
+    private fun setVM() {
+//        vm.isLoading.observe(this, Observer {
+//            if (it) {
+//
+//            } else {
+//
+//            }
+//        })
+
+        vm.result.observe(this, Observer {
+
+            when (it?.status) {
+                Status.LOADING -> {
+
+                }
+                Status.SUCCESS -> {
+                    onBackPressedListener?.doBack()
+                }
+                Status.ERROR -> {
+                    it.message?.let { message ->
+                        container.showSnackBar(message, Snackbar.LENGTH_SHORT)
+                    }
+
+                }
+            }
+
+//            if (it.first) {
+//                onBackPressedListener?.doBack()
+//            }
+        })
     }
 
 
@@ -130,15 +159,7 @@ class RegisterFragment : BaseFragment() {
             editTextUserName.text.trim().toString(),
             editTextMail.text.trim().toString(),
             editTextPassword.text.trim().toString()
-        ).observe(this,
-            Observer {
-
-                if (it.first) {
-                    onBackPressedListener?.doBack()
-                }
-
-            })
-
+        )
     }
 
 
