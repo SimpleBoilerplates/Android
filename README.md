@@ -35,6 +35,7 @@ This is a very simple Boilerplate application, this has following features.
   * [Android Architecture Components: LiveData](https://www.raywenderlich.com/4980-android-architecture-components-livedata)
   * [Android Architecture Components: ViewModel](https://www.raywenderlich.com/5046-android-architecture-components-viewmodel)
   * [Android Architecture Components — now with 100% more MVVM](https://android.jlelse.eu/android-architecture-components-now-with-100-more-mvvm-11629a630125)
+  * [MVVM with Clean Architecture](https://proandroiddev.com/mvvm-with-clean-architecture-c2c021e05c89)
   
 ### Retrofit Tutorials
 * [Android Networking in 2019 — Retrofit with Kotlin’s Coroutines](https://android.jlelse.eu/android-networking-in-2019-retrofit-with-kotlins-coroutines-aefe82c4d777)
