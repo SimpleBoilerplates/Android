@@ -57,6 +57,7 @@ This is a very simple Boilerplate application, this has following features.
 * [Insomnia](https://insomnia.rest/) Finally, a REST client you'll love, also works with GraphQL
 * [danger](https://github.com/danger/danger) Formalize your Pull Request etiquette.
 * [Fastlane](https://github.com/fastlane/fastlane) Automate building and releasing your iOS and Android app
+* [Sonar Qube](https://www.sonarqube.org/) Continuous Code Quality
 
 
 ### TODO
