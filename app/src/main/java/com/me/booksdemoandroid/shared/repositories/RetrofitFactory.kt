@@ -17,7 +17,7 @@ object RetrofitFactory {
 
         val accessToken = Pref.token
 
-        val newUrl = chain.request().url()
+        val newUrl = chain.request().url
             .newBuilder()
             //.addQueryParameter("api_key", AppConstants.tmdbApiKey)
             .build()

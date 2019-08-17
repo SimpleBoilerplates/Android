@@ -154,7 +154,7 @@ class LoginFragment : BaseFragment() {
         @JvmStatic
         fun newInstance(instance: Int): LoginFragment {
             val args = Bundle()
-            args.putInt(BaseFragment.ARGS_INSTANCE, instance)
+            args.putInt(ARGS_INSTANCE, instance)
             val fragment = LoginFragment()
             fragment.arguments = args
             return fragment
